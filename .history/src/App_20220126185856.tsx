@@ -10,7 +10,6 @@ function App() {
       if (response.data) {
         setState(response.data.Classnum)
         const appDocument = document.querySelector('#app-document')
-        appDocument!.innerHTML = response.data.Classnum
       }
     })
   }, []);

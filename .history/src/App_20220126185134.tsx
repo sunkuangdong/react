@@ -4,18 +4,19 @@ import './App.css';
 
 
 function App() {
-  const [state, setState] = useState<string>("")
+  let template = null
+  const [state, setState] = useState<DocumentFragment>()
   useEffect(() => {
     axios.get('http://localhost:3001/').then(response => {
       if (response.data) {
-        setState(response.data.Classnum)
-        const appDocument = document.querySelector('#app-document')
-        appDocument!.innerHTML = response.data.Classnum
+        template = document.createRange().createContextualFragment(response.data.Classnum);
+        setState(template)
       }
     })
   }, []);
   return (
-    <div className="App" id="app-document">
+    <div className="App">
+      {state}
     </div>
   );
 }

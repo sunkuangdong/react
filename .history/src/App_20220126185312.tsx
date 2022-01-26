@@ -4,18 +4,18 @@ import './App.css';
 
 
 function App() {
-  const [state, setState] = useState<string>("")
+  let template = null
+  const [state, setState] = useState()
   useEffect(() => {
     axios.get('http://localhost:3001/').then(response => {
       if (response.data) {
-        setState(response.data.Classnum)
-        const appDocument = document.querySelector('#app-document')
-        appDocument!.innerHTML = response.data.Classnum
+        template = response.data.Classnum
       }
     })
   }, []);
   return (
-    <div className="App" id="app-document">
+    <div className="App">
+      {template}
     </div>
   );
 }

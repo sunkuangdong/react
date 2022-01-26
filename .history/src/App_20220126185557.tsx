@@ -9,13 +9,12 @@ function App() {
     axios.get('http://localhost:3001/').then(response => {
       if (response.data) {
         setState(response.data.Classnum)
-        const appDocument = document.querySelector('#app-document')
-        appDocument!.innerHTML = response.data.Classnum
       }
     })
   }, []);
   return (
-    <div className="App" id="app-document">
+    <div className="App">
+      {state}
     </div>
   );
 }

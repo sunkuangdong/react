@@ -4,18 +4,20 @@ import './App.css';
 
 
 function App() {
-  const [state, setState] = useState<string>("")
+  const [state, setState] = useState<Response | null>(null)
   useEffect(() => {
     axios.get('http://localhost:3001/').then(response => {
+      console.log("response", response);
       if (response.data) {
-        setState(response.data.Classnum)
-        const appDocument = document.querySelector('#app-document')
-        appDocument!.innerHTML = response.data.Classnum
+        setState(JSON.parse(response.data.Classnum))
       }
     })
+
+    // setState(response.response)
   }, []);
   return (
-    <div className="App" id="app-document">
+    <div className="App">
+
     </div>
   );
 }
